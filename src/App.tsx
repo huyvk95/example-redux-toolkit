@@ -1,9 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-import { decreasement, hide, increasement, show } from "./reducer";
+import { counterSlice, displaySlice } from "./reducer";
 import { StoreType } from "./store";
 
 const App = () => {
   const { count, display } = useSelector((state: StoreType) => state);
+  const { decreasement, increasement } = counterSlice.actions;
+  const { show, hide } = displaySlice.actions;
   const dispatch = useDispatch();
 
   const onClickIncrease = () => {

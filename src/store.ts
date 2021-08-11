@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  countReducer,
+  counterSlice,
+  displaySlice,
   CountState,
-  displayReducer,
   DisplayState,
 } from "./reducer";
 
@@ -13,8 +13,8 @@ export type StoreType = {
 
 const store = configureStore<StoreType>({
   reducer: {
-    count: countReducer,
-    display: displayReducer,
+    count: counterSlice.reducer,
+    display: displaySlice.reducer,
   },
 });
 

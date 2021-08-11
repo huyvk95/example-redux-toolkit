@@ -1,31 +1,41 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
-
-export const increasement = createAction("increasement");
-export const decreasement = createAction("decreasement");
+import { createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
 
 export type CountState = {
   count: number;
 };
 
-const initialStateCount: CountState = { count: 0 };
+export type CountReducer = {
+  increasement: (state: CountState) => CountState;
+  decreasement: (state: CountState) => CountState;
+} & SliceCaseReducers<CountState>;
 
-export const countReducer = createReducer(initialStateCount, {
-  [increasement.type]: (state) => ({ count: state.count + 1 }),
-  [decreasement.type]: (state) => ({ count: state.count - 1 }),
+export const counterSlice = createSlice<CountState, CountReducer>({
+  name: "counter",
+  initialState: {
+    count: 0,
+  },
+  reducers: {
+    increasement: (state) => ({ count: state.count + 1 }),
+    decreasement: (state) => ({ count: state.count - 1 }),
+  },
 });
 
 /*******************************************************************/
-
-export const show = createAction("show");
-export const hide = createAction("hide");
 
 export type DisplayState = {
   isShow: boolean;
 };
 
-const initialStateDisplay: DisplayState = { isShow: true };
+export type DisplayReducer = {
+  show: (state: DisplayState) => DisplayState;
+  hide: (state: DisplayState) => DisplayState;
+} & SliceCaseReducers<DisplayState>;
 
-export const displayReducer = createReducer(initialStateDisplay, {
-  [show.type]: (state) => ({ isShow: true }),
-  [hide.type]: (state) => ({ isShow: false }),
+export const displaySlice = createSlice<DisplayState, DisplayReducer>({
+  name: "display",
+  initialState: { isShow: true },
+  reducers: {
+    show: (state) => ({ isShow: true }),
+    hide: (state) => ({ isShow: false }),
+  },
 });
