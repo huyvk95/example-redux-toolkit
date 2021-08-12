@@ -5,8 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-export const KEY = "count";
-
 export type State = {
   count: number;
 };
@@ -17,7 +15,7 @@ export type Reducer = {
 } & SliceCaseReducers<State>;
 
 export const slice = createSlice<State, Reducer>({
-  name: "counter",
+  name: "count",
   initialState: {
     count: 0,
   },
@@ -28,6 +26,6 @@ export const slice = createSlice<State, Reducer>({
 });
 
 export const getCountSelector = createSelector<RootState, State, number>(
-  (state) => state[KEY],
+  (state) => state.count,
   (res) => res.count
 );

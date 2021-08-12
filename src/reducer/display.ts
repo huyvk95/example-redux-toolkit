@@ -5,8 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-export const KEY = "display";
-
 export type State = {
   isShow: boolean;
 };
@@ -26,6 +24,6 @@ export const slice = createSlice<State, Reducer>({
 });
 
 export const getDisplaySelector = createSelector<RootState, State, boolean>(
-  (state) => state[KEY],
+  (state) => state.display,
   (res) => res.isShow
 );
