@@ -4,6 +4,7 @@ import {
   SliceCaseReducers,
 } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { slice as displaySlice } from "./display";
 
 export type State = {
   count: number;
@@ -22,6 +23,13 @@ export const slice = createSlice<State, Reducer>({
   reducers: {
     increasement: (state) => ({ count: state.count + 1 }),
     decreasement: (state) => ({ count: state.count - 1 }),
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(displaySlice.actions.hide, (state, action) => {
+        state.count = 0;
+      })
+      .addDefaultCase((state, action) => {});
   },
 });
 
