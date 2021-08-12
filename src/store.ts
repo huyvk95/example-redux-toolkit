@@ -1,20 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  counterSlice,
+  countSlice,
   displaySlice,
+  COUNT_KEY,
+  DISPLAY_KEY,
   CountState,
   DisplayState,
 } from "./reducer";
 
-export type StoreType = {
+export type RootState = {
   count: CountState;
   display: DisplayState;
 };
 
-const store = configureStore<StoreType>({
+const store = configureStore<RootState>({
   reducer: {
-    count: counterSlice.reducer,
-    display: displaySlice.reducer,
+    [COUNT_KEY]: countSlice.reducer,
+    [DISPLAY_KEY]: displaySlice.reducer,
   },
 });
 
